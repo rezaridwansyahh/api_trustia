@@ -1,0 +1,539 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Laravel Generator APIs",
+        "version": "1.0.0"
+    },
+    "basePath": "/api/v1",
+    "paths": {
+        "/caseDetails": {
+            "get": {
+                "tags": [
+                    "CaseDetail"
+                ],
+                "summary": "Get a listing of the CaseDetails.",
+                "description": "Get all CaseDetails",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/CaseDetail"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "CaseDetail"
+                ],
+                "summary": "Store a newly created CaseDetail in storage",
+                "description": "Store CaseDetail",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "CaseDetail that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/CaseDetail"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/CaseDetail"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/caseDetails/{id}": {
+            "get": {
+                "tags": [
+                    "CaseDetail"
+                ],
+                "summary": "Display the specified CaseDetail",
+                "description": "Get CaseDetail",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of CaseDetail",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/CaseDetail"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "CaseDetail"
+                ],
+                "summary": "Update the specified CaseDetail in storage",
+                "description": "Update CaseDetail",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of CaseDetail",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "CaseDetail that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/CaseDetail"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/CaseDetail"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "CaseDetail"
+                ],
+                "summary": "Remove the specified CaseDetail from storage",
+                "description": "Delete CaseDetail",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of CaseDetail",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/kases": {
+            "get": {
+                "tags": [
+                    "Kase"
+                ],
+                "summary": "Get a listing of the Kases.",
+                "description": "Get all Kases",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Kase"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Kase"
+                ],
+                "summary": "Store a newly created Kase in storage",
+                "description": "Store Kase",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Kase that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Kase"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Kase"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/kases/{id}": {
+            "get": {
+                "tags": [
+                    "Kase"
+                ],
+                "summary": "Display the specified Kase",
+                "description": "Get Kase",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Kase",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Kase"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Kase"
+                ],
+                "summary": "Update the specified Kase in storage",
+                "description": "Update Kase",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Kase",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Kase that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Kase"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Kase"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Kase"
+                ],
+                "summary": "Remove the specified Kase from storage",
+                "description": "Delete Kase",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Kase",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "CaseDetail": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "Kase_id": {
+                    "description": "Kase_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "foto_ktp": {
+                    "description": "foto_ktp",
+                    "type": "string"
+                },
+                "foto_stnk": {
+                    "description": "foto_stnk",
+                    "type": "string"
+                },
+                "foto_mobil": {
+                    "description": "foto_mobil",
+                    "type": "string"
+                },
+                "sisi1": {
+                    "description": "sisi1",
+                    "type": "string"
+                },
+                "sisi2": {
+                    "description": "sisi2",
+                    "type": "string"
+                },
+                "sisi3": {
+                    "description": "sisi3",
+                    "type": "string"
+                },
+                "sisi4": {
+                    "description": "sisi4",
+                    "type": "string"
+                },
+                "foto_dashboard": {
+                    "description": "foto_dashboard",
+                    "type": "string"
+                },
+                "foto_sim": {
+                    "description": "foto_sim",
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "Kase": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "tanggal_case": {
+                    "description": "tanggal_case",
+                    "type": "string",
+                    "format": "date"
+                },
+                "no_polisi": {
+                    "description": "no_polisi",
+                    "type": "string"
+                },
+                "no_mesin": {
+                    "description": "no_mesin",
+                    "type": "string"
+                },
+                "no_rangka": {
+                    "description": "no_rangka",
+                    "type": "string"
+                },
+                "merek_id": {
+                    "description": "merek_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "tahun_anggaran": {
+                    "description": "tahun_anggaran",
+                    "type": "string"
+                },
+                "warna": {
+                    "description": "warna",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "status",
+                    "type": "string"
+                },
+                "agent_id": {
+                    "description": "agent_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "wilayah_id": {
+                    "description": "wilayah_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        }
+    }
+}
