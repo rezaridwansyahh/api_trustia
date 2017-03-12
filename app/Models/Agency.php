@@ -15,7 +15,7 @@ class Agency extends Model
     use SoftDeletes;
 
     public $table = 'agencies';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -51,7 +51,7 @@ class Agency extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
     /**
@@ -59,6 +59,7 @@ class Agency extends Model
      **/
     public function user()
     {
-        return $this->hasOne(\App\Models\User::class, 'user_id', 'id');
+        //return $this->hasOne(\App\Models\User::class, 'user_id', 'id');
+        return $this->belongsTo('App\Models\User');
     }
 }

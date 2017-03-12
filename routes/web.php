@@ -23,3 +23,4 @@ Route::resource('kases', 'KaseController');
 
 
 Route::resource('caseDetails', 'CaseDetailController');
+
