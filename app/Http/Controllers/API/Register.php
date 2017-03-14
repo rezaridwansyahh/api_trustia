@@ -23,19 +23,27 @@ class Register extends AppBaseController
       $agency->status = $request->input('status');
       $agency->email = $request->input('email');
       $user->agency()->save($agency);
-      return response()->json(['result'=>'sukses_memasukan_data']);
+      return response()->json(['result'=>'sukses_memasukan_data_agency']);
       //return "data sukses di input";
     }
 
     public function storeagent(Request $request){
-      $input = $request->all();
-      $input['password'] = bcrypt($input['password']);
-      $user = User::create($input);
+      //$uzer = new User;
+      $user = new User;
+      $user->email = $request->email;
+      $user->password =  bcrypt($request->password);
+      $user->name = $request->name;
+      $user->status = $request->status;
+      $user->save();
+      //$input = $request->all();
+      //return $input;
+      // $input['password'] = bcrypt($input['password']);
+      // $user = User::create($input);
       $agent = new Agent;
-      $agent->nama_agent = $request->input('name');
-      $agent->alamat = $request->input('alamat');
-      $agent->email = $request->input('email');
-      $agent->no_telepon = $request->input('no_telepon');
+      $agent->nama_agent = $request->name;
+      $agent->alamat = $request->alamat;
+      $agent->email = $request->email;
+      $agent->no_telepon = $request->no_telepon;
       $agent->agency_id = '1';
       $user->agent()->save($agent);
       return response()->json(['result'=>'sukses_memasukan_data_agent']);

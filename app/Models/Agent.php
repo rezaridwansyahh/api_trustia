@@ -58,7 +58,7 @@ class Agent extends Model
     public function users()
     {
         //return $this->hasOne(\App\Models\Users::class, 'user_id', 'id');
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\User');
     }
 
     /**

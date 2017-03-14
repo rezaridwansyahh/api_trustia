@@ -60,6 +60,6 @@ class Agency extends Model
     public function user()
     {
         //return $this->hasOne(\App\Models\User::class, 'user_id', 'id');
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\User');
     }
 }

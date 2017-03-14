@@ -17,11 +17,12 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 
-Route::group(['middleware'=>'auth:api'],function(){
-
+Route::group(['middleware'=>'jwt.auth'],function(){
+  Route::resource('/v1/mereks', 'MerekAPIController');
 });
 
-Route::resource('/v1/mereks', 'MerekAPIController');
+
+
 
 Route::resource('/v1/tipes', 'TipeAPIController');
 
@@ -44,4 +45,16 @@ Route::resource('/v1/case_details', 'CaseDetailAPIController');
 Route::post('/v1/registeragency','Register@storeagency');
 
 Route::post('/v1/registeragent','Register@storeagent');
+
+Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
+Route::post('authenticate', 'AuthenticateController@authenticate');
+Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
+
+
+Route::group(['prefix' => 'v1'], function()
+{
+    Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
+    Route::post('authenticate', 'AuthenticateController@authenticate');
+    Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
+});
 //pt ericsson indonesia lt 6. hadi wiguna jam 10 pagi. seberang mesjid pondok indah.
