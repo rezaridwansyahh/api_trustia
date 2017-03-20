@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Requests\API\CreateAgencyAPIRequest;
 use App\Http\Requests\API\UpdateAgencyAPIRequest;
 use App\Models\Agency;
+use App\Models\Agent;
 use App\Repositories\AgencyRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
@@ -126,4 +127,6 @@ class AgencyAPIController extends AppBaseController
 
         return $this->sendResponse($id, 'Agency deleted successfully');
     }
+
+
 }

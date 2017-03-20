@@ -8,6 +8,9 @@ use App\Models\User as User;
 use App\Models\Agency as Agency;
 use App\Models\Agent as Agent;
 use App\Http\Controllers\AppBaseController;
+use Closure;
+use JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
 
 class Register extends AppBaseController
 {
@@ -33,12 +36,8 @@ class Register extends AppBaseController
       $user->email = $request->email;
       $user->password =  bcrypt($request->password);
       $user->name = $request->name;
-      $user->status = $request->status;
+      $user->status = 0;
       $user->save();
-      //$input = $request->all();
-      //return $input;
-      // $input['password'] = bcrypt($input['password']);
-      // $user = User::create($input);
       $agent = new Agent;
       $agent->nama_agent = $request->name;
       $agent->alamat = $request->alamat;
@@ -48,4 +47,6 @@ class Register extends AppBaseController
       $user->agent()->save($agent);
       return response()->json(['result'=>'sukses_memasukan_data_agent']);
     }
+
+
 }

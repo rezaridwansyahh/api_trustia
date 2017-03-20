@@ -101,8 +101,8 @@ class MerekAPIController extends AppBaseController
         }
 
         $merek = $this->merekRepository->update($input, $id);
-
-        return $this->sendResponse($merek->toArray(), 'Merek updated successfully');
+        return $this->sendResponse($input,"BISA KEK");
+        //return $this->sendResponse($merek->toArray(), 'Merek updated successfully');
     }
 
     /**

@@ -26,7 +26,8 @@ class Agent extends Model
         'email',
         'no_telepon',
         'user_id',
-        'agency_id'
+        'agency_id',
+        'status'
     ];
 
     /**

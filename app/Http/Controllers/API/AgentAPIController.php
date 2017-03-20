@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Requests\API\CreateAgentAPIRequest;
 use App\Http\Requests\API\UpdateAgentAPIRequest;
 use App\Models\Agent;
+use App\Models\Kase;
 use App\Repositories\AgentRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
@@ -126,4 +127,16 @@ class AgentAPIController extends AppBaseController
 
         return $this->sendResponse($id, 'Agent deleted successfully');
     }
+
+    public function acceptAgent($id){
+      $agent = Agent::find($id);
+      if($agent->status==1){
+        $agent->status = 0;
+      }else {
+        $agent->status = 1;
+      }
+        $agent->save();
+      return $this->sendResponse($agent, 'Udah diganti coy statusnya');
+    }
+
 }

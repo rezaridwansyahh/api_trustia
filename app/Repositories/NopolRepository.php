@@ -23,4 +23,9 @@ class NopolRepository extends BaseRepository
     {
         return Nopol::class;
     }
+
+    public static function cekplat($no){
+        $nopol = Nopol::where('no_polisi', $no)->first();
+        return $nopol;
+    }
 }

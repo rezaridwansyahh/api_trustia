@@ -68,4 +68,13 @@ class AuthenticateController extends AppBaseController
       // the token is valid and we have found the user via the sub claim
       return response()->json(compact('user'));
   }
+
+  public function ambildatalogin(){
+    // $user = JWTAuth::parseToken()->authenticate();
+    //$user = Auth::user();
+    $user = \Auth::getUser();
+    return $user;
+  }
+
+
 }

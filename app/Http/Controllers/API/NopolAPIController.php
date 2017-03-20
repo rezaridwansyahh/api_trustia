@@ -71,7 +71,7 @@ class NopolAPIController extends AppBaseController
     public function show($id)
     {
         /** @var Nopol $nopol */
-        $nopol = $this->nopolRepository->findWithoutFail($id);
+        $nopol = $this->nopolRepository->cekplat($id);
 
         if (empty($nopol)) {
             return $this->sendError('Nopol not found');

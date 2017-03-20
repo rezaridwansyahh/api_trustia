@@ -88,7 +88,7 @@ class Kase extends Model
     use SoftDeletes;
 
     public $table = 'kases';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -99,9 +99,12 @@ class Kase extends Model
         'no_mesin',
         'no_rangka',
         'merek_id',
+        'tipedetil',
         'tahun_anggaran',
         'warna',
         'status',
+        'status_bayar',
+        'tipe_pertanggungjawaban',
         'agent_id',
         'wilayah_id'
     ];
@@ -130,7 +133,7 @@ class Kase extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
     /**

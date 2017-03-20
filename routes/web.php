@@ -24,3 +24,10 @@ Route::resource('kases', 'KaseController');
 
 Route::resource('caseDetails', 'CaseDetailController');
 
+
+
+
+
+Route::resource('caseBiayas', 'CaseBiayaController');
+
+Route::resource('caseBiayas', 'CaseBiayaController');

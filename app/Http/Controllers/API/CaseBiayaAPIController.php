@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CreateKaseAPIRequest;
-use App\Http\Requests\API\UpdateKaseAPIRequest;
-use App\Models\Kase;
-use App\Repositories\KaseRepository;
+use App\Http\Requests\API\CreateCaseBiayaAPIRequest;
+use App\Http\Requests\API\UpdateCaseBiayaAPIRequest;
+use App\Models\CaseBiaya;
+use App\Repositories\CaseBiayaRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use InfyOm\Generator\Criteria\LimitOffsetCriteria;
@@ -13,18 +13,18 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
 /**
- * Class KaseController
+ * Class CaseBiayaController
  * @package App\Http\Controllers\API
  */
 
-class KaseAPIController extends AppBaseController
+class CaseBiayaAPIController extends AppBaseController
 {
-    /** @var  KaseRepository */
-    private $kaseRepository;
+    /** @var  CaseBiayaRepository */
+    private $caseBiayaRepository;
 
-    public function __construct(KaseRepository $kaseRepo)
+    public function __construct(CaseBiayaRepository $caseBiayaRepo)
     {
-        $this->kaseRepository = $kaseRepo;
+        $this->caseBiayaRepository = $caseBiayaRepo;
     }
 
     /**
@@ -32,10 +32,10 @@ class KaseAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/kases",
-     *      summary="Get a listing of the Kases.",
-     *      tags={"Kase"},
-     *      description="Get all Kases",
+     *      path="/caseBiayas",
+     *      summary="Get a listing of the CaseBiayas.",
+     *      tags={"CaseBiaya"},
+     *      description="Get all CaseBiayas",
      *      produces={"application/json"},
      *      @SWG\Response(
      *          response=200,
@@ -49,7 +49,7 @@ class KaseAPIController extends AppBaseController
      *              @SWG\Property(
      *                  property="data",
      *                  type="array",
-     *                  @SWG\Items(ref="#/definitions/Kase")
+     *                  @SWG\Items(ref="#/definitions/CaseBiaya")
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -61,29 +61,29 @@ class KaseAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $this->kaseRepository->pushCriteria(new RequestCriteria($request));
-        $this->kaseRepository->pushCriteria(new LimitOffsetCriteria($request));
-        $kases = $this->kaseRepository->all();
+        $this->caseBiayaRepository->pushCriteria(new RequestCriteria($request));
+        $this->caseBiayaRepository->pushCriteria(new LimitOffsetCriteria($request));
+        $caseBiayas = $this->caseBiayaRepository->all();
 
-        return $this->sendResponse($kases->toArray(), 'Kases retrieved successfully');
+        return $this->sendResponse($caseBiayas->toArray(), 'Case Biayas retrieved successfully');
     }
 
     /**
-     * @param CreateKaseAPIRequest $request
+     * @param CreateCaseBiayaAPIRequest $request
      * @return Response
      *
      * @SWG\Post(
-     *      path="/kases",
-     *      summary="Store a newly created Kase in storage",
-     *      tags={"Kase"},
-     *      description="Store Kase",
+     *      path="/caseBiayas",
+     *      summary="Store a newly created CaseBiaya in storage",
+     *      tags={"CaseBiaya"},
+     *      description="Store CaseBiaya",
      *      produces={"application/json"},
      *      @SWG\Parameter(
      *          name="body",
      *          in="body",
-     *          description="Kase that should be stored",
+     *          description="CaseBiaya that should be stored",
      *          required=false,
-     *          @SWG\Schema(ref="#/definitions/Kase")
+     *          @SWG\Schema(ref="#/definitions/CaseBiaya")
      *      ),
      *      @SWG\Response(
      *          response=200,
@@ -96,7 +96,7 @@ class KaseAPIController extends AppBaseController
      *              ),
      *              @SWG\Property(
      *                  property="data",
-     *                  ref="#/definitions/Kase"
+     *                  ref="#/definitions/CaseBiaya"
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -106,13 +106,13 @@ class KaseAPIController extends AppBaseController
      *      )
      * )
      */
-    public function store(CreateKaseAPIRequest $request)
+    public function store(CreateCaseBiayaAPIRequest $request)
     {
         $input = $request->all();
 
-        $kases = $this->kaseRepository->create($input);
+        $caseBiayas = $this->caseBiayaRepository->create($input);
 
-        return $this->sendResponse($kases->toArray(), 'Kase saved successfully');
+        return $this->sendResponse($caseBiayas->toArray(), 'Case Biaya saved successfully');
     }
 
     /**
@@ -120,14 +120,14 @@ class KaseAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Get(
-     *      path="/kases/{id}",
-     *      summary="Display the specified Kase",
-     *      tags={"Kase"},
-     *      description="Get Kase",
+     *      path="/caseBiayas/{id}",
+     *      summary="Display the specified CaseBiaya",
+     *      tags={"CaseBiaya"},
+     *      description="Get CaseBiaya",
      *      produces={"application/json"},
      *      @SWG\Parameter(
      *          name="id",
-     *          description="id of Kase",
+     *          description="id of CaseBiaya",
      *          type="integer",
      *          required=true,
      *          in="path"
@@ -143,7 +143,7 @@ class KaseAPIController extends AppBaseController
      *              ),
      *              @SWG\Property(
      *                  property="data",
-     *                  ref="#/definitions/Kase"
+     *                  ref="#/definitions/CaseBiaya"
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -155,30 +155,30 @@ class KaseAPIController extends AppBaseController
      */
     public function show($id)
     {
-        /** @var Kase $kase */
-        $kase = $this->kaseRepository->findWithoutFail($id);
+        /** @var CaseBiaya $caseBiaya */
+        $caseBiaya = $this->caseBiayaRepository->findWithoutFail($id);
 
-        if (empty($kase)) {
-            return $this->sendError('Kase not found');
+        if (empty($caseBiaya)) {
+            return $this->sendError('Case Biaya not found');
         }
 
-        return $this->sendResponse($kase->toArray(), 'Kase retrieved successfully');
+        return $this->sendResponse($caseBiaya->toArray(), 'Case Biaya retrieved successfully');
     }
 
     /**
      * @param int $id
-     * @param UpdateKaseAPIRequest $request
+     * @param UpdateCaseBiayaAPIRequest $request
      * @return Response
      *
      * @SWG\Put(
-     *      path="/kases/{id}",
-     *      summary="Update the specified Kase in storage",
-     *      tags={"Kase"},
-     *      description="Update Kase",
+     *      path="/caseBiayas/{id}",
+     *      summary="Update the specified CaseBiaya in storage",
+     *      tags={"CaseBiaya"},
+     *      description="Update CaseBiaya",
      *      produces={"application/json"},
      *      @SWG\Parameter(
      *          name="id",
-     *          description="id of Kase",
+     *          description="id of CaseBiaya",
      *          type="integer",
      *          required=true,
      *          in="path"
@@ -186,9 +186,9 @@ class KaseAPIController extends AppBaseController
      *      @SWG\Parameter(
      *          name="body",
      *          in="body",
-     *          description="Kase that should be updated",
+     *          description="CaseBiaya that should be updated",
      *          required=false,
-     *          @SWG\Schema(ref="#/definitions/Kase")
+     *          @SWG\Schema(ref="#/definitions/CaseBiaya")
      *      ),
      *      @SWG\Response(
      *          response=200,
@@ -201,7 +201,7 @@ class KaseAPIController extends AppBaseController
      *              ),
      *              @SWG\Property(
      *                  property="data",
-     *                  ref="#/definitions/Kase"
+     *                  ref="#/definitions/CaseBiaya"
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -211,21 +211,20 @@ class KaseAPIController extends AppBaseController
      *      )
      * )
      */
-
-    public function update($id, UpdateKaseAPIRequest $request)
+    public function update($id, UpdateCaseBiayaAPIRequest $request)
     {
         $input = $request->all();
 
-        /** @var Kase $kase */
-        $kase = $this->kaseRepository->findWithoutFail($id);
+        /** @var CaseBiaya $caseBiaya */
+        $caseBiaya = $this->caseBiayaRepository->findWithoutFail($id);
 
-        if (empty($kase)) {
-            return $this->sendError('Kase not found');
+        if (empty($caseBiaya)) {
+            return $this->sendError('Case Biaya not found');
         }
 
-        $kase = $this->kaseRepository->update($input, $id);
+        $caseBiaya = $this->caseBiayaRepository->update($input, $id);
 
-        return $this->sendResponse($kase->toArray(), 'Kase updated successfully');
+        return $this->sendResponse($caseBiaya->toArray(), 'CaseBiaya updated successfully');
     }
 
     /**
@@ -233,14 +232,14 @@ class KaseAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Delete(
-     *      path="/kases/{id}",
-     *      summary="Remove the specified Kase from storage",
-     *      tags={"Kase"},
-     *      description="Delete Kase",
+     *      path="/caseBiayas/{id}",
+     *      summary="Remove the specified CaseBiaya from storage",
+     *      tags={"CaseBiaya"},
+     *      description="Delete CaseBiaya",
      *      produces={"application/json"},
      *      @SWG\Parameter(
      *          name="id",
-     *          description="id of Kase",
+     *          description="id of CaseBiaya",
      *          type="integer",
      *          required=true,
      *          in="path"
@@ -268,38 +267,15 @@ class KaseAPIController extends AppBaseController
      */
     public function destroy($id)
     {
-        /** @var Kase $kase */
-        $kase = $this->kaseRepository->findWithoutFail($id);
+        /** @var CaseBiaya $caseBiaya */
+        $caseBiaya = $this->caseBiayaRepository->findWithoutFail($id);
 
-        if (empty($kase)) {
-            return $this->sendError('Kase not found');
+        if (empty($caseBiaya)) {
+            return $this->sendError('Case Biaya not found');
         }
 
-        $kase->delete();
+        $caseBiaya->delete();
 
-        return $this->sendResponse($id, 'Kase deleted successfully');
-    }
-
-    public function self(Request $request,$id){
-      $kase = $this->kaseRepository->cekselfcase($id);
-
-      if (empty($kase)) {
-          return $this->sendError('Kase not found');
-      }
-      //return $kase;
-      return $this->sendResponse($kase->toArray(), 'Kase retrieved successfully');
-    }
-
-    public function gantistatus($id){
-      $kase = Kase::find($id);
-      if($kase->status_bayar==1){
-        $kase->status_bayar = 0;
-        $kase->status = 1;
-      }else {
-        $kase->status_bayar = 1;
-        $kase->status = 2;
-      }
-        $kase->save();
-      return $this->sendResponse($kase, 'Udah diganti coy statusnya');
+        return $this->sendResponse($id, 'Case Biaya deleted successfully');
     }
 }

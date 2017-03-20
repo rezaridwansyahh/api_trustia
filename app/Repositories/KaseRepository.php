@@ -16,6 +16,7 @@ class KaseRepository extends BaseRepository
         'no_mesin',
         'no_rangka',
         'merek_id',
+        'tipedetil',
         'tahun_anggaran',
         'warna',
         'status',
@@ -29,5 +30,10 @@ class KaseRepository extends BaseRepository
     public function model()
     {
         return Kase::class;
+    }
+
+    public static function cekselfcase($id){
+        $kase = Kase::where('agent_id', $id)->get();
+        return $kase;
     }
 }
