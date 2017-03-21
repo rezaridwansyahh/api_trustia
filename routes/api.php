@@ -39,10 +39,30 @@ Route::resource('/v1/agencies', 'AgencyAPIController');
 Route::resource('/v1/agents', 'AgentAPIController');
 Route::post('/v1/acceptagent/{id}','AgentAPIController@acceptAgent');
 
+Route::group(['prefix' => 'v1/kases'], function () {
+  Route::get('submit','KaseAPIController@kaseSubmit');
+  Route::get('outstanding','KaseAPIController@kaseOutstanding');
+  Route::get('pending','KaseAPIController@kasePending');
+  Route::get('approve','KaseAPIController@kaseApprove');
+  Route::get('decline','KaseAPIController@kaseDecline');
 
-Route::resource('/v1/kases', 'KaseAPIController');
+  Route::get('submit/agent/{id}','KaseAPIController@submitagent');
+});
+
 Route::get('/v1/kases/selfcase/{id}','KaseAPIController@self');
-Route::get('/v1/kases/gantistatusbayar/{id}','KaseAPIController@gantistatus');
+Route::resource('/v1/kases', 'KaseAPIController');
+
+
+
+
+
+Route::group(['prefix' => '/v1/kases/gantistatus'], function () {
+  Route::get('bayar/{id}','KaseAPIController@gantistatusbayar');
+  Route::get('outstanding/{id}','KaseAPIController@gantistatusoutstanding');
+  Route::get('approve/{id}','KaseAPIController@gantistatusapprove');
+  Route::get('decline/{id}','KaseAPIController@gantistatusdecline');
+});
+
 
 Route::resource('/v1/case_details', 'CaseDetailAPIController');
 

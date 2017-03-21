@@ -36,4 +36,37 @@ class KaseRepository extends BaseRepository
         $kase = Kase::where('agent_id', $id)->get();
         return $kase;
     }
+
+    public static function cekAgentSubmit($id){
+      $kase = Kase::where('agent_id', $id)->where('status',"1")->get();
+      return $kase;
+    }
+
+    public static function submit(){
+        $kase = Kase::where('status', "1")->get();
+        return $kase;
+    }
+
+    public static function outstanding(){
+        $kase = Kase::where('status', "2")->get();
+        return $kase;
+    }
+
+    public static function pending(){
+        $kase = Kase::where('status', "3")->get();
+        return $kase;
+    }
+
+    public static function approve(){
+        $kase = Kase::where('status', "4")->get();
+        return $kase;
+    }
+
+    public static function decline(){
+        $kase = Kase::where('status', "5")->get();
+        return $kase;
+    }
+
+
+
 }

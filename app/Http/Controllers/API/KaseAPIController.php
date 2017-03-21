@@ -290,7 +290,68 @@ class KaseAPIController extends AppBaseController
       return $this->sendResponse($kase->toArray(), 'Kase retrieved successfully');
     }
 
-    public function gantistatus($id){
+    public function kaseSubmit(Request $request){
+      $kase = $this->kaseRepository->submit();
+
+      if (empty($kase)) {
+          return $this->sendError('Kase not found');
+      }
+      //return $kase;
+      return $this->sendResponse($kase->toArray(), 'Kase retrieved successfully');
+    }
+
+    public function kaseOutstanding(Request $request){
+      $kase = $this->kaseRepository->outstanding();
+
+      if (empty($kase)) {
+          return $this->sendError('Kase not found');
+      }
+      //return $kase;
+      return $this->sendResponse($kase->toArray(), 'Kase retrieved successfully');
+    }
+
+    public function kasePending(Request $request){
+      $kase = $this->kaseRepository->pending();
+
+      if (empty($kase)) {
+          return $this->sendError('Kase not found');
+      }
+      //return $kase;
+      return $this->sendResponse($kase->toArray(), 'Kase retrieved successfully');
+    }
+
+    public function kaseApprove(Request $request){
+      $kase = $this->kaseRepository->approve();
+
+      if (empty($kase)) {
+          return $this->sendError('Kase not found');
+      }
+      //return $kase;
+      return $this->sendResponse($kase->toArray(), 'Kase retrieved successfully');
+    }
+
+    public function kaseDecline(){
+      $kase = $this->kaseRepository->decline();
+
+      if (empty($kase)) {
+          return $this->sendError('Kase not found');
+      }
+      //return $kase;
+      return $this->sendResponse($kase->toArray(), 'Kase retrieved successfully');
+      //return "fuck";
+    }
+
+    public function submitagent($id){
+      $kase = $this->kaseRepository->cekAgentSubmit($id);
+
+      if (empty($kase)) {
+          return $this->sendError('Kase not found');
+      }
+      //return $kase;
+      return $this->sendResponse($kase->toArray(), 'Kase Retrieved Successfull');
+    }
+
+    public function gantistatusbayar($id){
       $kase = Kase::find($id);
       if($kase->status_bayar==1){
         $kase->status_bayar = 0;
@@ -300,6 +361,29 @@ class KaseAPIController extends AppBaseController
         $kase->status = 2;
       }
         $kase->save();
+        return $this->sendResponse($kase, 'Udah diganti coy statusnya');
+    }
+
+    public function gantistatusoutstanding($id){
+        $kase = Kase::find($id);
+        $kase->status = 3;
+        $kase->save();
+        return $this->sendResponse($kase, 'Udah diganti coy statusnya');
+    }
+
+    public function gantistatusapprove($id){
+      $kase = Kase::find($id);
+      $kase->status = 4;
+      $kase->save();
       return $this->sendResponse($kase, 'Udah diganti coy statusnya');
     }
+
+    public function gantistatusdecline($id){
+      $kase = Kase::find($id);
+      $kase->status = 5;
+      $kase->save();
+      return $this->sendResponse($kase, 'Udah diganti coy statusnya');
+    }
+
+
 }

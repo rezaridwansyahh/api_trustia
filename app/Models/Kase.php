@@ -105,6 +105,7 @@ class Kase extends Model
         'status',
         'status_bayar',
         'tipe_pertanggungjawaban',
+        'comment',
         'agent_id',
         'wilayah_id'
     ];
