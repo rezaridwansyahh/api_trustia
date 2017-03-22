@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Requests\API\CreateKaseAPIRequest;
 use App\Http\Requests\API\UpdateKaseAPIRequest;
 use App\Models\Kase;
+use App\Models\Nopol;
 use App\Repositories\KaseRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
@@ -109,9 +110,19 @@ class KaseAPIController extends AppBaseController
     public function store(CreateKaseAPIRequest $request)
     {
         $input = $request->all();
+        $panjangplat = strlen($input['no_polisi']);
 
+        for($i=0;$i<$panjangplat;$i++){
+          if($input['no_polisi'][$i]==" "){
+            $stop = $i;
+            break;
+          }
+        }
+
+        $input['pala'] = substr($input['no_polisi'],0,$stop);
+        $nopol = Nopol::where('no_polisi',$input['pala'])->get()->first();
+        $input['wilayah_id'] = $nopol['wilayah_id'];
         $kases = $this->kaseRepository->create($input);
-
         return $this->sendResponse($kases->toArray(), 'Kase saved successfully');
     }
 
@@ -341,8 +352,48 @@ class KaseAPIController extends AppBaseController
       //return "fuck";
     }
 
-    public function submitagent($id){
+    public function submitAgent($id){
       $kase = $this->kaseRepository->cekAgentSubmit($id);
+
+      if (empty($kase)) {
+          return $this->sendError('Kase not found');
+      }
+      //return $kase;
+      return $this->sendResponse($kase->toArray(), 'Kase Retrieved Successfull');
+    }
+
+    public function outStandingAgent($id){
+      $kase = $this->kaseRepository->cekAgentOutStanding($id);
+
+      if (empty($kase)) {
+          return $this->sendError('Kase not found');
+      }
+      //return $kase;
+      return $this->sendResponse($kase->toArray(), 'Kase Retrieved Successfull');
+    }
+
+    public function approveAgent($id){
+      $kase = $this->kaseRepository->cekAgentApprove($id);
+
+      if (empty($kase)) {
+          return $this->sendError('Kase not found');
+      }
+      //return $kase;
+      return $this->sendResponse($kase->toArray(), 'Kase Retrieved Successfull');
+    }
+
+    public function pendingAgent($id){
+      $kase = $this->kaseRepository->cekAgentPending($id);
+
+      if (empty($kase)) {
+          return $this->sendError('Kase not found');
+      }
+      //return $kase;
+      return $this->sendResponse($kase->toArray(), 'Kase Retrieved Successfull');
+    }
+
+    public function declineAgent($id){
+      $kase = $this->kaseRepository->cekAgentDecline($id);
 
       if (empty($kase)) {
           return $this->sendError('Kase not found');

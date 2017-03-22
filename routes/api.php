@@ -46,7 +46,11 @@ Route::group(['prefix' => 'v1/kases'], function () {
   Route::get('approve','KaseAPIController@kaseApprove');
   Route::get('decline','KaseAPIController@kaseDecline');
 
-  Route::get('submit/agent/{id}','KaseAPIController@submitagent');
+  Route::get('submit/agent/{id}','KaseAPIController@submitAgent');
+  Route::get('outstanding/agent/{id}','KaseAPIController@outStandingAgent');
+  Route::get('approve/agent/{id}','KaseAPIController@approveAgent');
+  Route::get('pending/agent/{id}','KaseAPIController@pendingAgent');
+  Route::get('decline/agent/{id}','KaseAPIController@declineAgent');
 });
 
 Route::get('/v1/kases/selfcase/{id}','KaseAPIController@self');
